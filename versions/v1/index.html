@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Stamp Collection</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-container">
+
+        <h1>My Stamp Collection</h1>
+
+        <p>My personal stamp collection gallery</p>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- Search and Filter -->
+
+    <section class="controls">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search stamps..."
+            >
+
+        </div>
+
+
+        <div>
+
+            <select id="categoryFilter">
+
+                <option value="all">All Categories</option>
+
+                <option value="LEGO">LEGO</option>
+
+                <option value="Pokémon">Pokémon</option>
+
+                <option value="Stamps">Stamps</option>
+
+                <option value="Others">Others</option>
+
+            </select>
+
+            <select id="favoriteFilter">
+
+              <option value="all">All Stamps</option>
+
+             <option value="favorites">♥ Favorites</option>
+
+            </select>
+
+            <select id="sortFilter">
+
+             <option value="newest">Newest Collected</option>
+  
+             <option value="oldest">Oldest Collected</option>
+ 
+             <option value="nameAsc">Name A → Z</option>
+
+             <option value="nameDesc">Name Z → A</option>
+  
+             <option value="priceLow">Price Low → High</option>
+  
+             <option value="priceHigh">Price High → Low</option>
+
+          </select>
+
+
+        </div>
+
+        <button class="clear-button" id="clearFiltersButton">
+    Clear Filters
+</button>
+
+        <button class="add-button" id="addStampButton">
+            + Add Stamp
+        </button>
+
+    </section>
+
+    <!-- Collection Count -->
+
+    <div id="collectionCount"></div>
+
+    <div id="categoryStats"></div>
+
+    <!-- Add Stamp Form -->
+
+    <section class="add-form" id="addForm" style="display: none;">
+
+        <button type="button" id="editCloseButton" class="edit-close-button">×</button>
+
+        <h2>Add New Stamp</h2>
+
+        <form id="stampForm">
+
+            <label>
+                Stamp Name
+
+                <input
+                    type="text"
+                    id="stampName"
+                    required
+                >
+            </label>
+
+
+            <label>
+                Description
+
+                <textarea
+                    id="stampDescription"
+                ></textarea>
+            </label>
+
+
+            <label>
+                Price (RM)
+
+                <input
+                    type="number"
+                    id="stampPrice"
+                    step="0.01"
+                    min="0"
+                >
+            </label>
+
+
+            <label>
+                Location
+
+                <input
+                    type="text"
+                    id="stampLocation"
+                >
+            </label>
+
+
+            <label>
+    Category
+
+    <div class="category-checkboxes">
+
+        <label>
+            <input type="checkbox" name="stampCategory" value="Stamps">
+            Stamps
+        </label>
+
+        <label>
+            <input type="checkbox" name="stampCategory" value="LEGO">
+            LEGO
+        </label>
+
+        <label>
+            <input type="checkbox" name="stampCategory" value="Pokémon">
+            Pokémon
+        </label>
+
+        <label>
+            <input type="checkbox" name="stampCategory" value="Others">
+            Others
+        </label>
+
+    </div>
+</label>
+
+
+            <label>
+                Collection Date
+
+                <input
+                    type="date"
+                    id="stampDate"
+                >
+            </label>
+
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="stampFavorite"
+                >
+
+                Favorite
+
+            </label>
+
+
+            <label>
+              Stamp Image
+
+             <input
+             id="stampImage"
+             type="file"
+             accept="image/*"
+             >
+             
+            </label>
+
+            <div class="form-buttons">
+
+    <button
+        type="button"
+        id="cancelButton"
+    >
+        Cancel
+    </button>
+
+    <button
+        type="submit"
+    >
+        Save Stamp
+    </button>
+
+</div>
+
+        </form>
+
+    </section>
+
+
+    <!-- Gallery -->
+
+    <section
+        class="gallery"
+        id="gallery"
+    >
+
+    </section>
+
+    <!-- Stamp Details Popup -->
+
+<div
+    class="stamp-modal"
+    id="stampModal"
+    style="display: none;"
+>
+
+    <div class="stamp-modal-content">
+
+        <button
+            class="modal-close"
+            id="modalClose"
+        >
+            ×
+        </button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+</main>
+
+
+<!-- Supabase -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- Our website code -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

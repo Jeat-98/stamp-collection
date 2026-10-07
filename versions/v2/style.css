@@ -1,0 +1,1665 @@
+/* ==============================
+   GENERAL
+============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f4ef;
+    color: #333;
+}
+
+
+/* ==============================
+   HEADER
+   ============================== */
+
+header {
+    background: #ffffff;
+    padding: 35px 20px 25px;
+    text-align: center;
+    border-bottom: 1px solid #e5e0d8;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #3d3a35;
+}
+
+header p {
+    margin: 8px 0 0;
+    color: #888;
+    font-size: 15px;
+}
+
+
+/* ==============================
+   MAIN
+   ============================== */
+
+main {
+    max-width: 1600px;
+    margin: auto;
+    padding: 30px 25px 50px;
+}
+
+
+/* ==============================
+   CONTROLS
+   ============================== */
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#searchInput {
+    flex: 1;
+    min-width: 300px;
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid #ddd7ce;
+    border-radius: 10px;
+    background: white;
+    color: #3d3a35;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+
+#searchInput:focus {
+    border-color: #c9c1b7;
+    box-shadow: 0 0 0 3px rgba(61, 58, 53, 0.05);
+}
+
+#categoryFilter,
+#favoriteFilter,
+#sortFilter {
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid #ddd7ce;
+    border-radius: 10px;
+    background: white;
+    color: #3d3a35;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 150px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+#categoryFilter:focus,
+#favoriteFilter:focus,
+#sortFilter:focus {
+    border-color: #c9c1b7;
+    box-shadow: 0 0 0 3px rgba(61, 58, 53, 0.05);
+}
+
+/* ==============================
+   ADD BUTTON / CLEAR BUTTON
+   ============================== */
+
+.add-button {
+    padding: 13px 20px;
+    height: 44px;
+    border: none;
+    border-radius: 10px;
+    background: #3d3a35;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease,
+                transform 0.15s ease;
+}
+
+.add-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.clear-button {
+    padding: 13px 20px;
+    height: 44px;
+    border: 1px solid #ddd7ce;
+    border-radius: 10px;
+    background: #faf9f7;
+    color: #3d3a35;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease, transform .15s ease;
+}
+
+.clear-button:hover {
+    background: #f1eee9;
+    transform: translateY(-1px);
+}
+
+/* ==============================
+   GALLERY
+   ============================== */
+
+#gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+
+/* ==============================
+   TABLET / SMALL LAPTOP
+   ============================== */
+
+@media (max-width: 1300px) {
+
+    #gallery {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+}
+
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media (max-width: 750px) {
+
+    #gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+}
+
+
+/* ==============================
+   SMALL PHONE
+   ============================== */
+
+@media (max-width: 480px) {
+
+    #gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .card-image {
+        height: 220px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+}
+
+
+/* ==============================
+   STAMP DETAILS POPUP
+   ============================== */
+
+.stamp-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.stamp-modal-content {
+    position: relative;
+
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modal-close {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #eeeae3;
+
+    color: #555;
+
+    font-size: 24px;
+    line-height: 30px;
+
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+.modal-close:hover {
+    background: #e2ddd5;
+}
+
+.modal-image {
+    width: 100%;
+    max-height: 450px;
+
+    object-fit: contain;
+
+    background: #faf9f7;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+    color: #333;
+}
+
+.modal-description {
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: #777;
+
+    margin-bottom: 18px;
+}
+
+.modal-info {
+    font-size: 14px;
+    line-height: 2;
+
+    color: #666;
+}
+
+.modal-price {
+    margin-top: 15px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: #444;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .stamp-modal {
+        padding: 10px;
+    }
+
+    .stamp-modal-content {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    .modal-image {
+        max-height: 300px;
+    }
+
+    .modal-title {
+        font-size: 20px;
+    }
+
+}
+
+/* Clickable image */
+.card-image {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.card-image:hover {
+    transform: scale(1.02);
+}
+
+.card-image::after {
+    content: "🔍";
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+
+    font-size: 12px;
+
+    background: rgba(255, 255, 255, 0.85);
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+/* ==============================
+   FILTER CONTROLS
+============================== */
+
+#categoryFilter,
+#favoriteFilter,
+#sortFilter,
+.clear-button,
+.add-button {
+    height: 44px;
+}
+
+/* ==============================
+   FORM LABELS
+============================== */
+
+#stampForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+/* ==============================
+   FORM BUTTONS
+============================== */
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.form-buttons button {
+    min-width: 120px;
+    height: 42px;
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: opacity 0.2s ease,
+                transform 0.15s ease;
+}
+
+.form-buttons button:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.form-buttons .save-button {
+    background: #3d3a35;
+    color: white;
+}
+
+.form-buttons #cancelButton {
+    background: #eeeae3;
+    color: #555;
+}
+
+/* ==============================
+   FINAL FORM STYLING
+============================== */
+
+#stampForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.form-buttons button {
+    min-width: 120px;
+    height: 42px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s ease,
+                transform 0.15s ease;
+}
+
+.form-buttons button:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.form-buttons .save-button {
+    background: #3d3a35;
+    color: white;
+}
+
+.form-buttons #cancelButton {
+    background: #eeeae3;
+    color: #555;
+}
+
+/* Image upload */
+
+#stampImage {
+    padding: 10px;
+    background: #faf9f7;
+    cursor: pointer;
+}
+
+/* ==============================
+   IMAGE PREVIEW
+============================== */
+
+.image-preview {
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    padding: 8px;
+    margin-top: 8px;
+
+    background: #faf9f7;
+    border: 1px solid #ddd7ce;
+    border-radius: 10px;
+}
+
+/* ==============================
+   FILTERS
+============================== */
+
+#categoryFilter,
+#favoriteFilter,
+#sortFilter {
+    height: 44px;
+    min-width: 150px;
+}
+
+/* ==============================
+   MOBILE CONTROLS
+============================== */
+
+@media (max-width: 750px) {
+
+    .controls {
+        align-items: stretch;
+    }
+
+    #searchInput,
+    #categoryFilter,
+    #favoriteFilter,
+    #sortFilter,
+    .clear-button,
+    .add-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .clear-button,
+    .add-button {
+        height: 44px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .form-buttons button {
+        width: 100%;
+    }
+
+}
+
+/* ==============================
+   CATEGORY BADGE
+============================== */
+
+.card-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 7px;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* Stamps */
+.category-stamps {
+    background: #f3e4df;
+    color: #9a5d52;
+}
+
+/* LEGO */
+.category-lego {
+    background: #e5edf7;
+    color: #52729a;
+}
+
+/* Pokémon */
+.category-pokmon {
+    background: #f5ead0;
+    color: #9a7938;
+}
+
+/* Others */
+.category-others {
+    background: #e7e3ed;
+    color: #71637e;
+}
+
+.card-content {
+    position: relative;
+    padding: 13px;
+}
+
+.card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ==============================
+   CATEGORY CHECKBOXES
+============================== */
+
+.category-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-checkboxes label {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 5px !important;
+
+    padding: 8px 12px;
+    background: #faf9f7;
+    border: 1px solid #ddd7ce;
+    border-radius: 8px;
+
+    font-size: 13px !important;
+    font-weight: normal !important;
+    cursor: pointer;
+}
+
+.category-checkboxes label:hover {
+    background: #f3f0eb;
+}
+
+.category-checkboxes input {
+    width: auto !important;
+    cursor: pointer;
+}
+
+/* ==============================
+   CATEGORY BADGES
+============================== */
+
+.card-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 4px 0 8px;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Stamps */
+
+.category-stamps {
+    background: #eeeae3;
+    color: #625b52;
+}
+
+/* LEGO */
+
+.category-lego {
+    background: #f5dfdf;
+    color: #a34d4d;
+}
+
+/* Pokémon */
+
+.category-pokemon {
+    background: #e2ebf7;
+    color: #4f6f98;
+}
+
+/* Others */
+
+.category-others {
+    background: #e7e7e7;
+    color: #666;
+}
+
+/* ==============================
+   EDIT STAMP POPUP
+============================== */
+
+#addForm.editing-mode {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(600px, calc(100% - 30px));
+    max-height: 90vh;
+    overflow-y: auto;
+
+    margin: 0;
+    z-index: 2000;
+
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25),
+        0 0 0 100vmax rgba(0, 0, 0, 0.45);
+}
+
+#addForm.editing-mode h2 {
+    margin-top: 0;
+}
+
+#addForm.editing-mode #stampForm {
+    margin-top: 15px;
+}
+
+/* =================================
+   CATEGORY BADGES
+================================= */
+
+.card-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 4px 0 8px;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.category-stamps {
+    background: #eeeae3;
+    color: #625b52;
+}
+
+.category-lego {
+    background: #f5dfdf;
+    color: #a34d4d;
+}
+
+.category-pokemon {
+    background: #e2ebf7;
+    color: #4f6f98;
+}
+
+.category-others {
+    background: #e7e7e7;
+    color: #666;
+}
+
+
+/* =================================
+   EDIT STAMP POPUP
+================================= */
+
+#addForm.editing-mode {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(600px, calc(100% - 30px));
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    margin: 0;
+
+    z-index: 2000;
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25),
+        0 0 0 100vmax rgba(0, 0, 0, 0.45);
+}
+
+#addForm.editing-mode h2 {
+    margin-top: 0;
+}
+
+#addForm.editing-mode #stampForm {
+    margin-top: 15px;
+}
+
+
+/* =================================
+   EDIT POPUP MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    #addForm.editing-mode {
+
+        width: calc(100% - 20px);
+
+        max-height: 92vh;
+
+        padding: 18px;
+
+        border-radius: 12px;
+    }
+}
+
+/* =================================
+   EDIT POPUP CLOSE BUTTON
+================================= */
+
+.edit-close-button {
+    display: none;
+
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f0f0f0;
+
+    color: #555;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: background 0.2s ease,
+                color 0.2s ease;
+}
+
+.edit-close-button:hover {
+    background: #ddd;
+    color: #222;
+}
+
+
+/* Show close button only in edit mode */
+
+#addForm.editing-mode .edit-close-button {
+    display: flex;
+}
+
+
+/* Make popup positioning work */
+
+#addForm.editing-mode {
+    position: fixed;
+}
+
+
+/* Prevent background scrolling */
+
+body.editing-popup-open {
+    overflow: hidden;
+}
+
+/* =================================
+   ADD / EDIT FORM POLISH
+================================= */
+
+#addForm.editing-mode {
+    box-sizing: border-box;
+}
+
+#addForm.editing-mode #stampForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* Form labels */
+
+#addForm.editing-mode #stampForm > label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    color: #3d3a35;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Text inputs */
+
+#addForm.editing-mode input[type="text"],
+#addForm.editing-mode input[type="number"],
+#addForm.editing-mode input[type="date"],
+#addForm.editing-mode textarea {
+    box-sizing: border-box;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid #ddd7cf;
+    border-radius: 8px;
+
+    background: #faf9f7;
+
+    color: #3d3a35;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#addForm.editing-mode input[type="text"]:focus,
+#addForm.editing-mode input[type="number"]:focus,
+#addForm.editing-mode input[type="date"]:focus,
+#addForm.editing-mode textarea:focus {
+    border-color: #aaa39a;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(61, 58, 53, 0.06);
+}
+
+
+/* Description */
+
+#addForm.editing-mode textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+
+/* =================================
+   CATEGORY CHECKBOXES
+================================= */
+
+#addForm.editing-mode .category-checkboxes {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 2px;
+}
+
+#addForm.editing-mode .category-checkboxes label {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 10px;
+
+    border: 1px solid #e3ded6;
+
+    border-radius: 8px;
+
+    background: #faf9f7;
+
+    color: #555049;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#addForm.editing-mode
+.category-checkboxes label:hover {
+    background: #f1eee9;
+
+    border-color: #ccc5bb;
+}
+
+#addForm.editing-mode
+.category-checkboxes input[type="checkbox"] {
+    accent-color: #3d3a35;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   FAVORITE
+================================= */
+
+#addForm.editing-mode
+#stampFavorite {
+    width: 16px;
+    height: 16px;
+
+    accent-color: #c47b73;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   PHOTO UPLOAD
+================================= */
+
+#addForm.editing-mode
+#stampImage {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 10px;
+
+    border: 1px dashed #cfc8bf;
+
+    border-radius: 8px;
+
+    background: #faf9f7;
+
+    color: #666057;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+#addForm.editing-mode
+#stampImage:hover {
+    background: #f5f2ed;
+
+    border-color: #aaa39a;
+}
+
+
+/* =================================
+   IMAGE PREVIEW
+================================= */
+
+#addForm.editing-mode .image-preview {
+    display: block;
+
+    width: 100%;
+    max-height: 220px;
+
+    margin-top: 8px;
+
+    object-fit: contain;
+
+    border: 1px solid #e5e0d9;
+
+    border-radius: 10px;
+
+    background: #faf9f7;
+}
+
+
+/* =================================
+   FORM BUTTONS
+================================= */
+
+#addForm.editing-mode
+#stampForm button[type="submit"] {
+    padding: 11px 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #3d3a35;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+#addForm.editing-mode
+#stampForm button[type="submit"]:hover {
+    background: #292722;
+}
+
+#addForm.editing-mode
+#stampForm button[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+
+/* Cancel button */
+
+#addForm.editing-mode
+#cancelButton {
+    padding: 11px 18px;
+
+    border: 1px solid #ddd7cf;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #555049;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#addForm.editing-mode
+#cancelButton:hover {
+    background: #f5f2ed;
+
+    border-color: #c9c2b9;
+}
+
+
+/* =================================
+   FORM BUTTON ROW
+================================= */
+
+#addForm.editing-mode
+#stampForm .form-buttons {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 4px;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    #addForm.editing-mode
+    #stampForm {
+        gap: 13px;
+    }
+
+    #addForm.editing-mode
+    #stampForm .form-buttons {
+        flex-direction: column-reverse;
+    }
+
+    #addForm.editing-mode
+    #stampForm .form-buttons button {
+        width: 100%;
+    }
+
+    #addForm.editing-mode
+    .category-checkboxes {
+        gap: 6px;
+    }
+
+    #addForm.editing-mode
+    .category-checkboxes label {
+        padding: 7px 9px;
+    }
+}
+/* =================================
+   CATEGORY STATISTICS
+================================= */
+
+/* =================================
+   COLLECTION OVERVIEW + CATEGORIES
+================================= */
+
+#collectionCount {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 14px;
+}
+
+#categoryStats {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 0;
+    vertical-align: middle;
+}
+
+/* Category statistic cards */
+
+.category-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 9px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.category-stat-count {
+    font-weight: 700;
+}
+
+
+/* Stamps — brighter */
+
+.category-stat-stamps {
+    background: #E8E4DC;
+    color: #665F55;
+}
+
+
+/* LEGO */
+
+.category-stat-lego {
+    background: #f5dfdf;
+    color: #a34d4d;
+}
+
+
+.category-stat-pokemon {
+    background: #fff3c4;
+    color: #8a6d1d;
+}
+
+.category-stat-others {
+    background: #dcecf7;
+    color: #52758c;
+}
+
+/* =========================================
+   GALLERY CARD DESIGN
+   ========================================= */
+
+/* -----------------------------------------
+   CARD
+   ----------------------------------------- */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e8e3db;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(61, 58, 53, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(61, 58, 53, 0.10);
+}
+
+
+/* -----------------------------------------
+   CARD IMAGE
+   ----------------------------------------- */
+
+.card-image {
+    height: 160px;
+    position: relative;
+    background: #faf9f7;
+    cursor: pointer;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-image::after {
+    content: "🔍";
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
+    pointer-events: none;
+}
+
+
+/* -----------------------------------------
+   CARD CONTENT
+   ----------------------------------------- */
+
+.card-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 12px;
+}
+
+
+/* -----------------------------------------
+   FAVORITE BUTTON
+   ----------------------------------------- */
+
+.favorite-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 25px;
+    height: 25px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #aaa39b;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1;
+
+    box-shadow: 0 2px 6px rgba(61, 58, 53, 0.12);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        color 0.15s ease;
+}
+
+/* Unselected */
+
+.favorite-button:not(.active) {
+    background: #ffffff;
+    color: #aaa39b;
+}
+
+/* Selected */
+
+.favorite-button.active {
+    background: #ffffff;
+    color: #a94343;
+}
+
+/* Hover */
+
+.favorite-button:hover {
+    transform: scale(1.08);
+}
+
+
+/* -----------------------------------------
+   STAMP TITLE
+   ----------------------------------------- */
+
+.card-title {
+    margin: 3px 0 6px;
+
+    padding-right: 32px;
+
+    color: #333;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* -----------------------------------------
+   CATEGORY BADGES
+   ----------------------------------------- */
+
+.card-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0 0 7px;
+}
+
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+
+/* -----------------------------------------
+   DESCRIPTION
+   ----------------------------------------- */
+
+.card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+
+    margin: 0 0 8px;
+
+    color: #777;
+    font-size: 11px;
+    line-height: 1.45;
+
+    min-height: 16px;
+}
+
+
+/* -----------------------------------------
+   LOCATION / DATE / PRICE INFO
+   ----------------------------------------- */
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    margin-top: 0;
+    margin-bottom: 4px;
+
+    color: #777;
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+
+/* Information row */
+
+.info-row {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    min-height: 15px;
+}
+
+
+/* Icon container */
+
+.info-icon {
+    width: 13px;
+    height: 13px;
+
+    flex: 0 0 13px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Black / grey SVG icons */
+
+.info-icon svg {
+    width: 12px;
+    height: 12px;
+
+    fill: none;
+    stroke: #55514c;
+
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* -----------------------------------------
+   PRICE
+   ----------------------------------------- */
+
+.price-row {
+    margin-top: -1px;
+}
+
+.price-row span:last-child {
+    color: #625b54;
+
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+/* -----------------------------------------
+   EDIT / DELETE BUTTONS
+   ----------------------------------------- */
+
+.card-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: auto;
+    padding-top: 7px;
+}
+
+.edit-button,
+.delete-button {
+    margin: 0;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-size: 10px;
+    line-height: 1.2;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+/* Edit */
+
+.edit-button {
+    border: 1px solid #ddd7ce;
+    background: #f1eee9;
+    color: #555;
+}
+
+.edit-button:hover {
+    background: #e7e2da;
+    transform: translateY(-1px);
+}
+
+
+/* Delete */
+
+.delete-button {
+    border: 1px solid #ecd0cc;
+    background: #f7e7e5;
+    color: #a04d46;
+}
+
+.delete-button:hover {
+    background: #f1d9d6;
+    transform: translateY(-1px);
+}
+
+
+/* -----------------------------------------
+   MOBILE CARD
+   ----------------------------------------- */
+
+@media (max-width: 750px) {
+
+    .card-image {
+        height: 180px;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+
+    .card-info {
+        font-size: 10px;
+    }
+
+    .favorite-button {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+}
+
+/* =========================================
+   FAVOURITE CHECKBOX
+   ========================================= */
+
+#addForm.editing-mode #stampFavorite {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #a94343;
+}
+
+#addForm.editing-mode #stampForm > label:has(#stampFavorite) {
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+}
+
+#addForm.editing-mode #stampForm > label:has(#stampFavorite) {
+    cursor: pointer;
+}
+
