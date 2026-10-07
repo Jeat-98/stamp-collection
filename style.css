@@ -1704,3 +1704,31 @@ body.stamp-modal-open {
     }
 
 }
+
+
+/* ==============================
+   VERSION LINKS
+============================== */
+
+.version-links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.version-links a {
+    padding: 6px 12px;
+    border: 1px solid #e8e3db;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #3d3a35;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.version-links a:hover {
+    background: #f7f4ef;
+    border-color: #3d3a35;
+}
